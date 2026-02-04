@@ -5,7 +5,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/seanmullen/go/bin:$PATH"
 
-export ANTHROPIC_API_KEY="***REMOVED***"
+export PATH="$HOME/.local/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="/Users/seanmullen/Library/pnpm"
@@ -40,3 +40,7 @@ if [ -f '/Users/seanmullen/google-cloud-sdk/completion.zsh.inc' ]; then . '/User
 # Added by Windsurf
 export PATH="/Users/seanmullen/.codeium/windsurf/bin:$PATH"
 alias config="$(which git) --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
