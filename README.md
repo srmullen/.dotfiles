@@ -27,3 +27,12 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 mkdir -p $HOME/.local/bin
 mv nvim-linux-x86_64.appimage $HOME/.local/bin
 ```
+
+*tmux*
+
+tmux should already be installed. To add plugins/theming install tpm
+
+`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+
+press the default key binding prefix + I to fetch- and install the plugin
+
