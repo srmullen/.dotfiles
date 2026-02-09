@@ -7,6 +7,8 @@ export PATH="/Users/seanmullen/go/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
+export TERM=xterm-256color
+
 # pnpm
 export PNPM_HOME="/Users/seanmullen/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
