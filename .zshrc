@@ -2,7 +2,6 @@ eval "$(starship init zsh)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/seanmullen/go/bin:$PATH"
 
 export TERM=xterm-256color
@@ -37,6 +36,4 @@ if [ -f '/Users/seanmullen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sean
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/seanmullen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/seanmullen/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Added by Windsurf
-export PATH="/Users/seanmullen/.codeium/windsurf/bin:$PATH"
 alias config="$(which git) --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
