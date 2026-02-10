@@ -5,7 +5,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/seanmullen/go/bin:$PATH"
 
-export ANTHROPIC_API_KEY="***REMOVED***"
+export TERM=xterm-256color
 
 # pnpm
 export PNPM_HOME="/Users/seanmullen/Library/pnpm"

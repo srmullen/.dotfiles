@@ -3,6 +3,7 @@
 # for examples
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+export TERM=xterm-256color
 
 # If not running interactively, don't do anything
 case $- in
