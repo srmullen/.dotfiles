@@ -1,1 +1,3 @@
 shell-integration-features = ssh-terminfo,ssh-env,sudo
+clipboard-read = allow
+clipboard-write = allow
