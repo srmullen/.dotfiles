@@ -5,6 +5,8 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 export TERM=xterm-256color
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
