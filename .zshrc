@@ -1,6 +1,5 @@
 eval "$(starship init zsh)"
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/seanmullen/go/bin:$PATH"
@@ -44,3 +43,16 @@ alias config="$(which git) --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/seanmullen/.bun/_bun" ] && source "/Users/seanmullen/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Volta must be prepended last so its shims win over Homebrew/nvm/etc. node
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Pi
+export PATH="/Users/seanmullen/.volta/tools/image/node/26.5.0/bin:$PATH"
