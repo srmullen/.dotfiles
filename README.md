@@ -1,21 +1,111 @@
 # .dotfiles
 
-Based on this setup https://www.atlassian.com/git/tutorials/dotfiles
+Shell, editor, terminal and tmux configuration, tracked as a bare git repo
+checked out over `$HOME` — the setup described in
+[this Atlassian tutorial](https://www.atlassian.com/git/tutorials/dotfiles).
+There is no symlink farm and no dotfile manager: `$HOME` *is* the working tree,
+and a `config` alias stands in for `git`.
 
-## Install neovim from source (https://neovim.io/doc/build/)
+## What's in here
 
-- Install platform specific dependencies
-`sudo apt-get install ninja-build gettext cmake curl build-essential git`
+| Path | What it configures |
+| --- | --- |
+| `.zshrc` | zsh: starship prompt, PATH for volta/bun/pnpm/go, nvm, conda, gcloud |
+| `.bashrc` | bash fallback, mostly stock Debian |
+| `.gitconfig` | git defaults; identity lives in an untracked `~/.gitconfig.local` |
+| `.tmux.conf` | tmux: `C-v` prefix, vim-style pane nav, tpm plugin list |
+| `.config/nvim` | submodule → [srmullen/kickstart.nvim](https://github.com/srmullen/kickstart.nvim) |
+| `.config/starship.toml` | starship prompt |
+| `.config/ghostty/config` | Ghostty terminal |
+| `install.sh` | bootstrap script (see below) |
 
-`git clone https://github.com/neovim/neovim`
-`cd neovim`
-`git checkout stable`
-`sudo make install`
+## Prerequisites
 
-*tmux*
+This repo is *only* configuration — it installs none of the tools it configures.
+Install what you need first:
 
-tmux should already be installed. To add plugins/theming install tpm
+`git` `zsh` `neovim` `tmux` `starship` `ghostty` `volta` (plus `nvm`, `pnpm`,
+`bun`, `conda`/`mambaforge`, `gcloud` if you want those lines in `.zshrc` to do
+anything — they're all guarded by existence checks, so missing ones are inert).
 
-`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+## Installation
 
-press the default key binding prefix + I to fetch- and install the plugin
+```sh
+curl -fsSL https://raw.githubusercontent.com/srmullen/.dotfiles/main/install.sh | bash
+```
+
+The script clones this repo bare to `~/.cfg.git` and checks it out over `$HOME`.
+Anything it would overwrite is moved to `~/.config-backup` first. Read it before
+you run it — it writes directly into your home directory.
+
+Then the two steps it can't do for you:
+
+```sh
+config submodule init && config submodule update          # neovim config
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Start tmux and press `prefix + I` to install the tmux plugins. **The prefix is
+remapped to `C-v`, not the default `C-b`.**
+
+Forking? Set `DOTFILES_REPO` to your own remote before running the script.
+
+## Day-to-day use
+
+`config` is a git alias pointing at this repo, defined in `.zshrc` and `.bashrc`:
+
+```sh
+config status
+config add .zshrc
+config commit -m "..."
+config push
+```
+
+Untracked files are hidden (`status.showUntrackedFiles no`), otherwise `config
+status` would list your entire home directory.
+
+## Git identity
+
+`.gitconfig` is tracked, so it deliberately contains **no** `[user]` section —
+otherwise anyone installing these dotfiles would start authoring commits as me.
+It instead includes `~/.gitconfig.local`, which is gitignored. Create it per
+machine:
+
+```ini
+[user]
+	name = Your Name
+	email = you@example.com
+```
+
+Note that `git config --global user.email` will print nothing, because
+`--includes` defaults to off when a specific config file is named. Plain
+`git config user.email` resolves it normally, and commits are authored correctly.
+
+## Branches
+
+`main` is macOS. `ubuntu` and `raspberrypi` carry per-machine deltas for those
+hosts and are merged from `main` as it moves. **You are on `raspberrypi`.**
+
+## Raspberry Pi specifics
+
+`.zshrc` here drops the Homebrew and Windsurf PATH entries — neither exists on
+this host — and sets `TERM=xterm-256color`. The conda, gcloud and bun lines are
+all existence-guarded, so they stay inert if those tools aren't installed.
+
+**neovim** has no usable prebuilt aarch64 release, so build it from source
+([docs](https://neovim.io/doc/build/)):
+
+```sh
+sudo apt-get install ninja-build gettext cmake curl build-essential git
+git clone https://github.com/neovim/neovim
+cd neovim
+git checkout stable
+sudo make install
+```
+
+**tmux** is normally already present; only tpm needs fetching (see the install
+steps above).
+
+## License
+
+MIT — see [LICENSE](LICENSE).

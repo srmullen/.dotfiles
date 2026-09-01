@@ -1,2 +1,10 @@
 .cfg.git
 
+# Credentials — configure locally with `rclone config`, never commit
+.config/rclone/rclone.conf
+
+# Managed by tpm (`prefix + I`), not by this repo
+.tmux/plugins/
+
+# Per-machine git identity and overrides
+.gitconfig.local
