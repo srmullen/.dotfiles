@@ -1,3 +1,8 @@
 shell-integration-features = ssh-terminfo,ssh-env,sudo
+
+# Heads-up if you are copying this file: `clipboard-read = allow` lets any
+# program running in the terminal read your system clipboard silently, with no
+# prompt. That includes anything you pipe in over SSH or run from an untrusted
+# repo. Ghostty's default is `ask`; set it back if you would rather be prompted.
 clipboard-read = allow
 clipboard-write = allow
