@@ -53,6 +53,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Volta must be prepended last so its shims win over Homebrew/nvm/etc. node
 export PATH="$VOLTA_HOME/bin:$PATH"
-
-# Pi
-export PATH="/Users/seanmullen/.volta/tools/image/node/26.5.0/bin:$PATH"
