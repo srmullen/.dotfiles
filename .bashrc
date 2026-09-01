@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME'
 export TERM=xterm-256color
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"

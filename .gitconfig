@@ -1,5 +1,7 @@
-[user]
-	name = Sean Mullen
-	email = srmullen13@gmail.com
 [init]
 	defaultBranch = main
+
+# Machine-local settings — identity, work email, credential helpers, etc.
+# Not tracked by this repo; create it per machine. See README.
+[include]
+	path = ~/.gitconfig.local
