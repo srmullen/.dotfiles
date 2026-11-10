@@ -1,0 +1,66 @@
+onboarding = false
+
+# Converted from ~/.tmux.conf
+
+[theme]
+name = "nord"                        # was: @plugin 'arcticicestudio/nord-tmux'
+
+[ui]
+mouse_capture = true                 # was: set -g mouse on (herdr default)
+
+[keys]
+prefix = "ctrl+v"                    # was: set -g prefix C-v
+
+# was: bind r source-file ~/.tmux.conf
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"       # herdr default for prefix+r, moved out of the way
+
+# was: bind-key h/j/k/l select-pane (these match herdr defaults)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# was: bind-key -r H/J/K/L resize-pane
+# herdr has no repeat flag; use resize_mode (prefix+shift+r) for repeated resizing.
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+
+# prefix+b / prefix+shift+t are herdr defaults that the tmux bindings below take over
+toggle_sidebar = "prefix+shift+b"
+rename_tab = "prefix+comma"          # same key as tmux's rename-window
+
+# navigate mode: vim-style j/k move between workspaces (default: up/down arrows).
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+
+# cycle through agents across workspaces (unbound by default)
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+
+# was: bind-key b break-pane -d
+[[keys.command]]
+key = "prefix+b"
+type = "shell"
+command = "herdr pane move \"$HERDR_ACTIVE_PANE_ID\" --new-tab --no-focus"
+description = "break pane into new tab"
+
+# was: bind-key t choose-window 'join-pane -h -s "%%"'
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "~/.config/herdr/join-pane.sh right"
+description = "join pane from tab (side by side)"
+width = "60%"
+height = "50%"
+
+# was: bind-key T choose-window 'join-pane -v -s "%%"'
+[[keys.command]]
+key = "prefix+shift+t"
+type = "popup"
+command = "~/.config/herdr/join-pane.sh down"
+description = "join pane from tab (stacked)"
+width = "60%"
+height = "50%"
